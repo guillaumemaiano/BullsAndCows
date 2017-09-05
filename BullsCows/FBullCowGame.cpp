@@ -42,7 +42,7 @@ bool FBullCowGame::IsGameWon() const
 	return bIsGameWon;
 }
 
-bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e)
+bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e) const
 {
 	FBullsCowsStore store = submitGuess(e);
 
@@ -57,7 +57,7 @@ bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e)
 
 // *** Assumptions
 // guess is valid (no repeating letters, MyWordLength long)
-FBullsCowsStore FBullCowGame::submitGuess(FString guess)
+FBullsCowsStore FBullCowGame::submitGuess(FString guess) const
 {
 	FBullsCowsStore store;
 	for (int letterPosition = 0; letterPosition < MyWordLength; ++letterPosition)
@@ -83,7 +83,7 @@ FBullsCowsStore FBullCowGame::submitGuess(FString guess)
 	return store;
 }
 
-bool FBullCowGame::isValidGuess(FString guess)
+bool FBullCowGame::isValidGuess(FString guess) const
 {
 	// check if word has appropriate length and is an isogram
 	return (isProperLength(guess) && isIsogram(guess));
@@ -130,7 +130,7 @@ void FBullCowGame::displayGameSummary() const
 	return;
 }
 
-bool FBullCowGame::isIsogram(FString string)
+bool FBullCowGame::isIsogram(FString string) const
 {
 	int32 strLength = string.length();
 	for (int32 letterPosition = 0; letterPosition < strLength; letterPosition++)
@@ -150,7 +150,7 @@ bool FBullCowGame::isIsogram(FString string)
 	return true;
 }
 
-bool FBullCowGame::isProperLength(FString string)
+bool FBullCowGame::isProperLength(FString string) const
 {
 	bool bIsWordLengthProper = (string.length() == MyWordLength);
 	if (!bIsWordLengthProper) {

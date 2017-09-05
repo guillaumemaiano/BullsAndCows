@@ -23,11 +23,13 @@ public:
 	bool shouldPlayAgain() const;
 
 	void displayCurrentTry() const;
-	void displayGameSummary() const;
+ 	void displayGameSummary() const;
+
+	bool checkSubmittedStringAgainstGameString(FString) const;
+	bool isValidGuess(FString) const;
 
 	void increaseCurrentTry();
-	bool checkSubmittedStringAgainstGameString(FString);
-	bool isValidGuess(FString);
+
 	void markGameWon();
 
 private:
@@ -36,7 +38,7 @@ private:
 	bool bIsGameWon;
 	int MyWordLength;
 	FString MyHiddenWord;
-	bool isIsogram(FString string);
-	bool isProperLength(FString string);
-	FBullsCowsStore submitGuess(FString);
+	bool isIsogram(FString string) const;
+	bool isProperLength(FString string) const;
+	FBullsCowsStore submitGuess(FString) const;
 };
