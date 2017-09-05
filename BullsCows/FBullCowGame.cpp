@@ -60,7 +60,7 @@ bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e)
 BullsCowsStore FBullCowGame::submitGuess(FString guess)
 {
 	BullsCowsStore store;
-	for (int letterPosition = 0; letterPosition < MyWordLength; letterPosition++)
+	for (int letterPosition = 0; letterPosition < MyWordLength; ++letterPosition)
 	{
 		// if guess or word has more characters than MaxWordLength, this will explode
 		// best case explored first, then on fail, loop
@@ -69,13 +69,11 @@ BullsCowsStore FBullCowGame::submitGuess(FString guess)
 			store.Bulls++;
 		}
 		else {
-			for (int parsingCursorPosition = 0; parsingCursorPosition < MyWordLength; parsingCursorPosition++)
+			for (int parsingCursorPosition = 0; parsingCursorPosition < MyWordLength; ++parsingCursorPosition)
 			{
-				// checked earlier
-				if (letterPosition == parsingCursorPosition) break;
 				
 				// check current guess letter against cursor's position in parsed hidden word
-				if (guess[letterPosition] == MyHiddenWord[parsingCursorPosition])
+				if (guess[letterPosition] == MyHiddenWord[parsingCursorPosition] && (letterPosition != parsingCursorPosition))
 				{
 					store.Cows++;
 				}
