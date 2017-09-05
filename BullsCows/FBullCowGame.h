@@ -4,7 +4,7 @@
 using int32 = int;
 using FString = std::string;
 
-struct BullsCowsStore {
+struct FBullsCowsStore {
 
 	int32 Bulls = 0;
 	int32 Cows = 0;
@@ -38,5 +38,5 @@ private:
 	FString MyHiddenWord;
 	bool isIsogram(FString string);
 	bool isProperLength(FString string);
-	BullsCowsStore submitGuess(FString);
+	FBullsCowsStore submitGuess(FString);
 };

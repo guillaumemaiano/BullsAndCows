@@ -44,7 +44,7 @@ bool FBullCowGame::IsGameWon() const
 
 bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e)
 {
-	BullsCowsStore store = submitGuess(e);
+	FBullsCowsStore store = submitGuess(e);
 
 	std::cout << "Bulls: " << store.Bulls << " Cows: " << store.Cows << std::endl;
 
@@ -57,9 +57,9 @@ bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e)
 
 // *** Assumptions
 // guess is valid (no repeating letters, MyWordLength long)
-BullsCowsStore FBullCowGame::submitGuess(FString guess)
+FBullsCowsStore FBullCowGame::submitGuess(FString guess)
 {
-	BullsCowsStore store;
+	FBullsCowsStore store;
 	for (int letterPosition = 0; letterPosition < MyWordLength; ++letterPosition)
 	{
 		// if guess or word has more characters than MaxWordLength, this will explode
