@@ -12,8 +12,6 @@ void PlayGame();
 
 FBullCowGame game;
 
-constexpr int32 WORD_LENGTH = 5;
-
 int32 main(int argc, char** argv) {
 
 	std::cout << "Welcome to Bulls and Cows\n";
@@ -50,7 +48,7 @@ void PlayGame() {
 	
 	do {
 		game.displayCurrentTry();
-		std::cout << "Guess the word. Length: " << WORD_LENGTH << std::endl;
+		std::cout << "Guess the word. Length: " << game.GetHiddenWordLength() << std::endl;
 		std::cout << "Your guess:" << std::endl;
 
 		FString Guess = getGuess();

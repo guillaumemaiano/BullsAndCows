@@ -28,6 +28,8 @@ public:
 	bool checkSubmittedStringAgainstGameString(FString) const;
 	bool isValidGuess(FString) const;
 
+	int32 GetHiddenWordLength() const;
+
 	void increaseCurrentTry();
 
 	void markGameWon();
@@ -36,7 +38,6 @@ private:
 	int MyCurrentTry;
 	int MyMaxTries;
 	bool bIsGameWon;
-	int MyWordLength;
 	FString MyHiddenWord;
 	bool isIsogram(FString string) const;
 	bool isProperLength(FString string) const;

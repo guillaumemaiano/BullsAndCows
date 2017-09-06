@@ -24,7 +24,7 @@ bool FBullCowGame::shouldPlayAgain() const
 
 FBullCowGame::FBullCowGame()
 {
-	MyWordLength = 5;
+	// improve by using a table of possible words + rand
 	MyHiddenWord = "extra";
 	Reset();
 }
@@ -48,7 +48,7 @@ bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e) const
 
 	std::cout << "Bulls: " << store.Bulls << " Cows: " << store.Cows << std::endl;
 
-	if (store.Bulls == MyWordLength) 
+	if (store.Bulls == GetHiddenWordLength())
 	{
 		return true;
 	}
@@ -60,7 +60,7 @@ bool FBullCowGame::checkSubmittedStringAgainstGameString(FString e) const
 FBullsCowsStore FBullCowGame::submitGuess(FString guess) const
 {
 	FBullsCowsStore store;
-	for (int letterPosition = 0; letterPosition < MyWordLength; ++letterPosition)
+	for (int letterPosition = 0; letterPosition < GetHiddenWordLength(); ++letterPosition)
 	{
 		// if guess or word has more characters than MaxWordLength, this will explode
 		// best case explored first, then on fail, loop
@@ -69,7 +69,7 @@ FBullsCowsStore FBullCowGame::submitGuess(FString guess) const
 			store.Bulls++;
 		}
 		else {
-			for (int parsingCursorPosition = 0; parsingCursorPosition < MyWordLength; ++parsingCursorPosition)
+			for (int parsingCursorPosition = 0; parsingCursorPosition <  GetHiddenWordLength(); ++parsingCursorPosition)
 			{
 				
 				// check current guess letter against cursor's position in parsed hidden word
@@ -87,6 +87,11 @@ bool FBullCowGame::isValidGuess(FString guess) const
 {
 	// check if word has appropriate length and is an isogram
 	return (isProperLength(guess) && isIsogram(guess));
+}
+
+int32 FBullCowGame::GetHiddenWordLength() const
+{
+	return MyHiddenWord.length();
 }
 
 void FBullCowGame::markGameWon()
@@ -152,7 +157,7 @@ bool FBullCowGame::isIsogram(FString string) const
 
 bool FBullCowGame::isProperLength(FString string) const
 {
-	bool bIsWordLengthProper = (string.length() == MyWordLength);
+	bool bIsWordLengthProper = (string.length() == MyHiddenWord.length());
 	if (!bIsWordLengthProper) {
 		std::cout << "Seems like some loser's not using the proper guess size." << std::endl;
 	}
